@@ -132,7 +132,7 @@ def runModel(image,thresh):
     Weights=get_weights(wpath)
     nets=load_model(CFG,Weights)
     confthres=thresh
-    nmsthres=thresh
+    nmsthres=0.2
     # lbls = list()
     # with open(labelsPath, "r") as f:
     #     lbls = [c.strip() for c in f.readlines()]
