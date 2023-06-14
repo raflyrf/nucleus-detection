@@ -13,7 +13,7 @@ app = Flask(__name__)
 def mask_image():
 	# print(request.files , file=sys.stderr)
 	thresh = request.form.get('threshh')
-	print(thresh)
+	print("ini nilai threshold ", thresh)
 	thresh = float(thresh)
 
 	file = request.files['image'].read() ##0 byte file

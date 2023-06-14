@@ -84,6 +84,7 @@ def detectObject(imgpath):
 
     idxs = cv2.dnn.NMSBoxes(boxes, confidences, CONFIDENCE_THRESHOLD, NMS_THRESHOLD)
     if len(idxs) > 0:
+        print(len(idxs))
         for i in idxs.flatten():
             (x, y) = (boxes[i][0], boxes[i][1])
             (w, h) = (boxes[i][2], boxes[i][3])
@@ -101,7 +102,7 @@ def detectObject(imgpath):
 
     cv2.imshow(imgpath, image)
     folder_hasil = 'C:/Users/oyoni/yolov4test1/YOLO-v3-Object-Detection/hasil deteksi'
-    cv2.imwrite(os.path.join(folder_hasil, imgpath.rstrip(".jpg")+" "+"hasil"+".jpg"), image)
+    #cv2.imwrite(os.path.join(folder_hasil, imgpath.rstrip(".jpg")+" "+"hasil"+".jpg"), image)
     cv2.waitKey(0)
     #hasil_deteksi=os.path.join(folder_hasil, imgpath.rstrip(".jpg")+" "+"hasil"+".jpg")
     

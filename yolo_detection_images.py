@@ -100,12 +100,12 @@ def get_predection(image,net,LABELS,COLORS,thresh1,thresh2):
 
     # apply non-maxima suppression to suppress weak, overlapping bounding
     # boxes
-    idxs = cv2.dnn.NMSBoxes(boxes, confidences, thresh1,
-                            thresh2)
+    idxs = cv2.dnn.NMSBoxes(boxes, confidences, thresh1, thresh2)
 
     # ensure at least one detection exists
     if len(idxs) > 0:
         # loop over the indexes we are keeping
+        print(len(idxs))
         for i in idxs.flatten():
             # extract the bounding box coordinates
             (x, y) = (boxes[i][0], boxes[i][1])
@@ -115,7 +115,7 @@ def get_predection(image,net,LABELS,COLORS,thresh1,thresh2):
             color = [int(c) for c in COLORS[classIDs[i]]]
             cv2.rectangle(image, (x, y), (x + w, y + h), color, 2)
             #text = "{}: {:.4f}".format(LABELS[classIDs[i]], confidences[i])
-            #print(boxes)
+            print(classIDs[i], round(confidences[i]*100, 2), "%")
             # cv2.imwrite("hasil .jpg", image)
             #print(classIDs)
             #cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX,0.5, color, 2)
