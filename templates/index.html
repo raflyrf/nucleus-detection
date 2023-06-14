@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>YOLO-Object Detection</title>
+	<link rel="stylesheet" type="text/css" href="../static/index.css">
+	<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../static/index.js"></script>
+</head>
+<body>
+
+
+
+<div class='App'>
+    <header class='App-header'>
+        <p><u>
+          Nucleus Detection
+        </u></p>
+        <div className="pre_img">
+          <span><img id="imagebox" src=""></span>
+        </div>
+        <form method="POST">
+          <input id="imageinput" type="file" name="image" onchange="readUrl(this)">
+          <h2>Threshold Value</h2>
+          <select id="tValue">
+            {% for o in tValues %}
+            <option value="{{ o.value }}">{{ o.value }}</option>
+            {% endfor %}
+          </select>
+        </form>
+        <br>
+        <br>
+			<button name="send" id = "sendbutton">Deteksi</button>
+	</header>
+</div>
+
+</body>
+</html>
