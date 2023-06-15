@@ -3,13 +3,15 @@ window.onload = () => {
 		imagebox = $('#imagebox')
 		input = $('#imageinput')[0]
 		var tValuee = document.getElementById('tValue').value;
+		var ntValuee = document.getElementById('nValue').value;
 		//var value = e.value;
 		//var text = e.options[e.selectedIndex].text;
 		if(input.files && input.files[0])
 		{
 			var formData = new FormData();
 			formData.append('image' , input.files[0]);
-			formData.append('threshh' , tValuee);
+			formData.append('tthresh' , tValuee);
+			formData.append('nthresh', ntValuee);
 			
 			$.ajax({
 				url: '/detectObject', // fix this to your GCE EXTERNAL IP

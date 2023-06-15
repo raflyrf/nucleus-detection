@@ -121,7 +121,7 @@ def get_predection(image,net,LABELS,COLORS,thresh1,thresh2):
             #cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX,0.5, color, 2)
     return image
 
-def runModel(image,thresh):
+def runModel(image,thresh,nthresh):
     # load our input image and grab its spatial dimensions
     # image = cv2.imread(img)
     labelsPath="obj.names"
@@ -132,7 +132,7 @@ def runModel(image,thresh):
     Weights=get_weights(wpath)
     nets=load_model(CFG,Weights)
     confthres=thresh
-    nmsthres=0.2
+    nmsthres=nthresh
     # lbls = list()
     # with open(labelsPath, "r") as f:
     #     lbls = [c.strip() for c in f.readlines()]

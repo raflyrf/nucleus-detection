@@ -29,6 +29,13 @@
             <option value="{{ o.value }}">{{ o.value }}</option>
             {% endfor %}
           </select>
+          <br>
+          <h2>NMS Threshold Value</h2>
+          <select id="nValue">
+            {% for p in nValues %}
+            <option value="{{ p.value }}">{{ p.value }}</option>
+            {% endfor %}
+          </select>
         </form>
         <br>
         <br>

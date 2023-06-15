@@ -12,9 +12,12 @@ app = Flask(__name__)
 @app.route('/detectObject' , methods=['POST'])
 def mask_image():
 	# print(request.files , file=sys.stderr)
-	thresh = request.form.get('threshh')
-	print("ini nilai threshold ", thresh)
-	thresh = float(thresh)
+	tthresh = request.form.get('tthresh')
+	nthresh = request.form.get('nthresh')
+	print("ini nilai threshold ", tthresh)
+	print("ini nilai nms threshold", nthresh)
+	tthresh = float(tthresh)
+	nthresh = float(nthresh)
 
 	file = request.files['image'].read() ##0 byte file
 	
@@ -27,7 +30,7 @@ def mask_image():
 	# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 	################################################
 
-	img = runModel(img,thresh)
+	img = runModel(img,tthresh,nthresh)
 
 	img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -59,7 +62,9 @@ def test():
 def home():
 	return render_template(
 		'./index.html',
-		tValues=[{'value':0.1}, {'value':0.2}, {'value':0.3}, {'value':0.4}, {'value':0.5}])
+		tValues=[{'value':0.1}, {'value':0.2}, {'value':0.3}, {'value':0.4}, {'value':0.5}],
+		nValues=[{'value':0.01}, {'value':0.05}, {'value':0.1}, {'value':0.2}, {'value':0.2}, {'value':0.3}, {'value':0.4}, {'value':0.5}]
+		)
 
 	
 @app.after_request
