@@ -26,9 +26,12 @@ window.onload = () => {
 				},
 				success: function(data){
 					console.log(data);
-					bytestring = data['status']
+					bytestring = data['gambar']
 					image = bytestring.split('\'')[1]
 					imagebox.attr('src' , 'data:image/jpeg;base64,'+image)
+					summnuc = data['sumNuc']
+					sumnuc = document.getElementById('jumNuc')
+					sumnuc.innerHTML = summnuc
 				}
 			});
 		}

@@ -35,7 +35,7 @@ html {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 25px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin: 40px 40px;
     /* display: none; */
@@ -58,4 +58,12 @@ html {
   p{
     margin: 50px;
     font-size: 72px;
+  }
+
+  select{
+    font-size: 25px;
+  }
+
+  button{
+    font-size: 25px;
   }

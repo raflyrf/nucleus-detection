@@ -101,7 +101,7 @@ def get_predection(image,net,LABELS,COLORS,thresh1,thresh2):
     # apply non-maxima suppression to suppress weak, overlapping bounding
     # boxes
     idxs = cv2.dnn.NMSBoxes(boxes, confidences, thresh1, thresh2)
-
+    totIdxs = len(idxs)
     # ensure at least one detection exists
     if len(idxs) > 0:
         # loop over the indexes we are keeping
@@ -119,7 +119,7 @@ def get_predection(image,net,LABELS,COLORS,thresh1,thresh2):
             # cv2.imwrite("hasil .jpg", image)
             #print(classIDs)
             #cv2.putText(image, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX,0.5, color, 2)
-    return image
+    return image, totIdxs
 
 def runModel(image,thresh,nthresh):
     # load our input image and grab its spatial dimensions
@@ -139,5 +139,5 @@ def runModel(image,thresh,nthresh):
 
     # Colors = np.random.randint(0, 255, size=(len(lbls), 3), dtype="uint8")
     Colors=get_colors(Lables)
-    res=get_predection(image,nets,Lables,Colors,confthres,nmsthres)
-    return res
+    res1,res2=get_predection(image,nets,Lables,Colors,confthres,nmsthres)
+    return res1,res2

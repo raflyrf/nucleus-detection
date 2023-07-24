@@ -15,7 +15,7 @@ def mask_image():
 	tthresh = request.form.get('tthresh')
 	nthresh = request.form.get('nthresh')
 	print("ini nilai threshold ", tthresh)
-	print("ini nilai nms threshold", nthresh)
+	print("ini nilai nms threshold ", nthresh)
 	tthresh = float(tthresh)
 	nthresh = float(nthresh)
 
@@ -30,7 +30,12 @@ def mask_image():
 	# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 	################################################
 
-	img = runModel(img,tthresh,nthresh)
+	#summNuc = runModelIdxs(img,tthresh,nthresh)
+	runYOO = runModel(img,tthresh,nthresh)
+	img = runYOO[0]
+	summNuc = runYOO[1]
+	#tes = runModelIdxs(img,tthresh,nthresh)
+	vector=np.vectorize(np.int_)
 
 	img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
@@ -39,7 +44,7 @@ def mask_image():
 	img.save(rawBytes, 'JPEG')
 	rawBytes.seek(0)
 	img_base64 = base64.b64encode(rawBytes.read())
-	return jsonify({'status':str(img_base64)})
+	return jsonify({"gambar":str(img_base64), "sumNuc":vector(summNuc).tolist()})
 ######################################## THE REAL DEAL HAPPENS ABOVE ######################################
 
 # def template(title = "HELLO!", text = ""):
@@ -63,7 +68,7 @@ def home():
 	return render_template(
 		'./index.html',
 		tValues=[{'value':0.1}, {'value':0.2}, {'value':0.3}, {'value':0.4}, {'value':0.5}],
-		nValues=[{'value':0.01}, {'value':0.05}, {'value':0.1}, {'value':0.2}, {'value':0.2}, {'value':0.3}, {'value':0.4}, {'value':0.5}]
+		nValues=[{'value':0.01}, {'value':0.05}, {'value':0.1}, {'value':0.2}, {'value':0.3}, {'value':0.4}, {'value':0.5}]
 		)
 
 	
